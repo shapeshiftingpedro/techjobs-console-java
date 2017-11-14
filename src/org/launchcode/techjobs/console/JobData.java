@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by LaunchCode
@@ -44,6 +45,27 @@ public class JobData {
         }
 
         return values;
+    }
+
+    public static ArrayList<HashMap<String, String>> findByValue(String value){
+
+        loadData();
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> jobColumn : allJobs){
+            for (String key : jobColumn.keySet()){
+                String aValue = jobColumn.get(key);
+                if (aValue.toLowerCase().contains(value.toLowerCase())){
+                    jobs.add(jobColumn);
+                    break;
+                }
+            }
+
+
+        }
+        return jobs;
+
     }
 
     public static ArrayList<HashMap<String, String>> findAll() {
